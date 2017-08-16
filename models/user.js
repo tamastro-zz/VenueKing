@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
       beforeCreate: function (models) {
         let salt = random.randomStr(8);
         let password = models.password
-        models.password = random.hashish(password, salt);
+        models.password = random.hashish(salt, password);
         models.salt = salt;
       }
     }

@@ -11,7 +11,8 @@ router.get('/profile', (req, res) => {
     })
     .then(user => {
       res.render('profile', {
-        data: user
+        data: user,
+        role: req.session.user.role
       })
     })
 })

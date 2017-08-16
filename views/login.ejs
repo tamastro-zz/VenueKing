@@ -6,20 +6,36 @@
     <%- include layout/materialize %>
 </head>
 
-<body>
-    <h1 align=center>LOGIN</h1>
-    <form action="/login" method="post" align=center>
-        <h3 style="color:red;">
-            <% if (errs) { %>
-                <%= errs %>
-                    <% } %>
-        </h3>
-        <br><br>
-        <input type="text" name="username" placeholder="Insert Your Username"><br>
-        <input type="password" name="password" placeholder="Insert Password"><br>
-        <input type="submit" value="submit">
-    </form>
-    <h2 align=center><a href="/">BACK</a></h2>
+<body align=center>
+    <div class="row">
+
+        <div class="col s2">
+            <%- include layout/sidebar %>
+                <!-- Grey navigation panel -->
+        </div>
+
+        <div class="col s10">
+            <!-- Teal page content  -->
+            <h1 align=center>LOGIN</h1>
+            <div class="container">
+
+                <form action="/login" method="post" align=center>
+                    <h3 style="color:red;">
+                        <% if (errs) { %>
+                            <%= errs %>
+                                <% } %>
+                    </h3>
+                    <br><br>
+                    <input type="text" name="username" placeholder="Insert Your Username"><br>
+                    <input type="password" name="password" placeholder="Insert Password"><br>
+                    <button class="btn waves-effect waves-light" type="submit" name="submit">Login</button>
+                </form>
+                <br><br>
+                <a href="/" class="waves-effect waves-light btn">Back</a>
+            </div>
+        </div>
+
+    </div>
 </body>
 
 </html>

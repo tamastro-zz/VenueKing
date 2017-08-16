@@ -17,9 +17,12 @@
       <a href="/user/profile/edit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>      | <a href="/user/profile/editpassword">Edit Password</a>
       <p class="flow-text"><b>Nama User :</b>
         <%= data.fullname %><br>
-              <b>Email User :</b>
-              <%= data.email %><br>
+          <b>Email User :</b>
+          <%= data.email %><br>
       </p>
+        <% if (role == 'owner') { %>
+        <a href="/venue/add" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        <%}%>
     </div>
 </body>
 

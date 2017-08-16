@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <%- include layout/materialize %>
+</head>
+
+<body align=center>
+  <div class="row">
+
+    <div class="col s2">
+      <%- include layout/innerside %>
+        <!-- Grey navigation panel -->
+    </div>
+
+    <div class="col s10">
+      <!-- Teal page content  -->
+      <h1 align=center>ADD VENUE</h1>
+      <div class="container">
+
+        <form action="/venue/add" method="post" align=center>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="nama" type="text" name="name">
+              <label for="nama">Venue Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="quota" type="number" name="quota" min="1" max="1000" step="1">
+              <label for="quota">Venue Quota</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="photo" type="text" name="photo">
+              <label for="photo">Venue Photo</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="number" name="price" id="price">
+              <label for="price">Venue Price</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea1" name="alamat" class="materialize-textarea"></textarea>
+              <label for="textarea1">Textarea</label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+          </div>
+          <br><br>
+          <button class="btn waves-effect waves-light grey" type="submit" name="submit">Submit</button>
+
+        </form>
+        <br><br>
+        <a href="/" class="waves-effect waves-light btn">Back</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</body>
+
+</html>
