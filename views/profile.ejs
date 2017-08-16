@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <%- include layout/materialize %>
+</head>
+
+<body>
+  <%- include layout/innerside %>
+    <div class="container">
+      <div class="col s6 #e91e63 red" align=center>
+        <h1 class="z-depth-5">
+          <%= data.username.toUpperCase() %>
+        </h1>
+      </div>
+      <a href="/user/profile/edit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>      | <a href="/user/profile/editpassword">Edit Password</a>
+      <p class="flow-text"><b>Nama User :</b>
+        <%= data.fullname %><br>
+              <b>Email User :</b>
+              <%= data.email %><br>
+      </p>
+    </div>
+</body>
+
+</html>

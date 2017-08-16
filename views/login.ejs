@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <%- include layout/materialize %>
+</head>
+
+<body>
+    <h1 align=center>LOGIN</h1>
+    <form action="/login" method="post" align=center>
+        <h3 style="color:red;">
+            <% if (errs) { %>
+                <%= errs %>
+                    <% } %>
+        </h3>
+        <br><br>
+        <input type="text" name="username" placeholder="Insert Your Username"><br>
+        <input type="password" name="password" placeholder="Insert Password"><br>
+        <input type="submit" value="submit">
+    </form>
+    <h2 align=center><a href="/">BACK</a></h2>
+</body>
+
+</html>

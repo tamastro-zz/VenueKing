@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>REGISTER</title>
+    <%- include layout/materialize %>
+</head>
+
+<body>
+  <h1 align=center>REGISTER</h1>
+    <form action="/register" method="post" align=center>
+        <h3 style="color:red;">
+            <% if (errs) { %>
+             <%= errs %>
+            <% } %>
+        </h3>
+        <br><br>
+        <input type="text" name="username" placeholder="Insert Your Username">
+        <input type="text" name="name" placeholder="Insert Your Full name">
+        <input type="text" name="email" placeholder="Insert Your Email">
+        <input type="password" name="password" placeholder="Insert Your Password">
+        <input type="password" name="retype" placeholder="ReType Your Password">
+        <select name="role">
+          <option value="owner">Property Owner</option>
+          <option value="tenant">Tenant</option>
+        </select>
+        <input type="submit" value="submit">
+    </form>
+
+    <h2 align=center><a href="/">BACK</a></h2>
+</body>
+
+</html>
