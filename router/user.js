@@ -10,19 +10,65 @@ router.get('/profile', (req, res) => {
       }
     })
     .then(user => {
-      res.render('profile', {
-        data: user,
-        role: req.session.user.role
-      })
+      db.UserVenue.findAll({
+          where: {
+            UserId: req.session.user.id
+          },
+          include: [db.Venue]
+        })
+        .then(venue => {
+          res.render('profile', {
+            data: user,
+            venue: venue,
+            role: req.session.user.role
+          })
+        })
+    })
+})
+
+router.post('/profile', (req, res) => {
+  db.UserVenue.findAll({
+      order: [
+        ['createdAt', 'ASC']
+      ],
+      where: {
+        VenueId: req.body.venueid,
+        active: false
+      },
+      limit: 1
+    })
+    .then(data => {
+      db.UserVenue.destroy({
+          where: {
+            UserId: req.session.user.id,
+            unique: req.body.unique
+          }
+        })
+        .then(() => {
+          if (data == []) {
+            res.redirect('/user/profile')
+          } else {
+              db.UserVenue.update({
+                  active: true
+                }, {
+                  where: {
+                    unique: data[0].unique
+                  }
+                })
+                .then(() => {
+                  res.redirect('/user/profile')
+                })
+          }
+        })
     })
 })
 
 router.get('/profile/edit', (req, res) => {
   db.User.findOne({
-    where: {
-      id: req.session.user.id
-    }
-  })
+      where: {
+        id: req.session.user.id
+      }
+    })
     .then(editP => {
       res.render('edit', {
         editUser: editP,
@@ -32,10 +78,10 @@ router.get('/profile/edit', (req, res) => {
 
 router.post('/profile/edit', (req, res) => {
   db.User.update({
-    fullname: `${req.body.name}`,
-    email: `${req.body.email}`,
-    updatedAt: new Date()
-  }, {
+      fullname: `${req.body.name}`,
+      email: `${req.body.email}`,
+      updatedAt: new Date()
+    }, {
       where: {
         id: req.session.user.id
       }

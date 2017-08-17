@@ -11,10 +11,62 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/add', (req, res) => {
-  res.render('addvenue', {
-    title: "Add Venue"
+router.post('/', (req, res) => {
+  req.session.user.tgl = req.body.date
+  res.redirect(`/venue/${req.body.id}`)
+})
+
+router.get('/:idv', (req,res) => {
+  thisID = parseInt(req.params.idv)
+  db.Venue.findOne({
+    where: {
+      id: thisID
+    }
   })
+  .then(venue => {
+    db.UserVenue.findAndCountAll({
+      where:{
+        date: req.session.user.tgl,
+        VenueId: req.params.idv,
+        active: true
+      }
+    })
+    .then(result => {
+      res.render('venuedetail', {
+        data: venue,
+        count: result.count,
+        result: result.rows
+      })
+    })
+  })
+})
+
+router.post('/:idv', (req, res) => {
+  let iniId = parseInt(req.params.idv)
+  db.UserVenue.create({
+    VenueId: iniId,
+    UserId: req.session.user.id,
+    active: req.body.active,
+    date: `${req.session.user.tgl}`
+  })
+  .then(() => {
+    res.redirect(`/venue/${iniId}`)
+  })
+})
+
+router.use((req, res, next) => {
+  if (req.session.user == 'owner') {
+    next();
+  } else {
+    res.redirect('/');
+  }
+})
+
+router.get('/add', (req, res) => {
+  res.send('test')
+  // res.render('addvenue', {
+  //   title: "Add Venue"
+  // })
 })
 
 router.post('/add', (req, res) => {

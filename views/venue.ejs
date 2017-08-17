@@ -6,7 +6,7 @@
     <%- include layout/materialize %>
 </head>
 
-<body align=center>
+<body>
     <div class="row">
 
         <div class="col s2">
@@ -14,21 +14,27 @@
                 <!-- Grey navigation panel -->
         </div>
 
-        <div class="col s10">
+        <div class="col s10" align=center>
             <!-- Teal page content  -->
             <%data.forEach(venue => {%>
-                <div class="row">
+                <div class="row" align=center>
                     <div class="col s12 m10">
-                        <div class="card">
+                        <div class="card hoverable">
                             <div class="card-image">
                                 <img src="<%= venue.photo %>">
                                 <span class="card-title"><%= venue.name %></span>
                             </div>
                             <div class="card-content">
-                                <p><%= venue.address %></p>
+                                <p>
+                                    <%= venue.address %>
+                                </p>
                             </div>
                             <div class="card-action">
-                                <a href="#">Book</a>
+                                <form action="/venue" method="post">
+                                            <input name="date" id="tanggalpilih" type="date" class="datepicker" required>
+                                    <input type="hidden" name="id" value="<%= venue.id %>">
+                                    <button class="btn waves-effect waves-light red" type="submit">Detail</button>
+                                </form>
                             </div>
                         </div>
                     </div>

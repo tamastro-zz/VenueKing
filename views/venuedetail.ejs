@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <%- include layout/materialize %>
+</head>
+
+<body align=center>
+  <div class="row">
+
+    <div class="col s2">
+      <%- include layout/innerside %>
+        <!-- Grey navigation panel -->
+    </div>
+
+    <div class="col s10" align=center>
+      <!-- Teal page content  -->
+      <br><br><img class="materialboxed" width="700" src="<%= data.photo %>">
+      <div class="card-panel #b71c1c red darken-4 z-depth-5">
+        <form action="/venue/<%= data.id %>" method="post">
+          <% if(count < data.quota) { %>
+            <input type="hidden" name="active" value="true">
+            <button class="btn waves-effect waves-light black tooltipped" data-position="bottom" data-delay="50" data-tooltip="Book This Venue"
+              onclick="Materialize.toast('Venue Booked', 4000)" type="submit" name="submit">Book</button>
+            <% } else { %>
+              <input type="hidden" name="active" value="false">
+              <button class="btn waves-effect waves-light black tooltipped" data-position="bottom" data-delay="50" data-tooltip="This Venue Is Full Booked But You Can Enter The Waiting List"
+                onclick="Materialize.toast('You've Been Added To This Venue Waiting List, 4000)" type="submit" name="submit">Enter Waiting List</button>
+              <% } %>
+        </form>
+        <h1 class="white-text">
+          <%= data.name %>
+        </h1>
+        <h3 class="white-text">
+          <%= data.address %>
+        </h3>
+        <table class="centered highlight bordered responsive-table">
+          <tr>
+            <th>Price</th>
+            <td>
+              <%= data.price %>
+            </td>
+          </tr>
+          <tr>
+            <th>Quota</th>
+            <td>
+              <%= data.quota %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</body>
+
+</html>

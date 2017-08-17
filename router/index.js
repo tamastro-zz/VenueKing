@@ -4,6 +4,8 @@ const db = require('../models');
 const crypto = require('crypto');
 const random = require('../views/helper/randomizer');
 
+
+
 router.get('/', (req, res) => {
   res.render('index', {
     title: 'VenueKing'
@@ -80,7 +82,7 @@ router.use((req, res, next) => {
   if (req.session.user) {
     next();
   } else {
-    res.sendStatus(403);
+    res.redirect('/');
   }
 })
 

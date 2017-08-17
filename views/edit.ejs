@@ -2,28 +2,38 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>EDIT
-        <%= editUser.username.toUpperCase() %>
-    </title>
-    <%- include layout/materialize %>
+  <meta charset="utf-8">
+  <title>EDIT
+    <%= editUser.username.toUpperCase() %>
+  </title>
+  <%- include layout/materialize %>
 </head>
 
 <body>
-    <%- include layout/innerside %>
-        <div class="container">
-            <div class="row">
-                <form action="/user/profile/edit" method="post">
-                    <h2>Edit Profile
-                        <%= editUser.username.toUpperCase() %>
-                    </h2>
-                    <input type="text" name="name" value="<%=editUser.fullname%>"><br>
-                    <input type="text" name="email" value="<%=editUser.email%>"><br>
-                    <button type="submit" class="btn waves-effect waves-light grey" name="submit">Submit</button>
-                </form>
+  <%- include layout/innerside %>
+    <div class="container">
+      <div class="row">
+        <form action="/user/profile/edit" method="post">
+          <h2>Edit Profile
+            <%= editUser.username.toUpperCase() %>
+          </h2>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" id="nama" name="name" value="<%=editUser.fullname%>">
+              <label for="nama">Full Name</label>
             </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" name="email" id="email" value="<%=editUser.email%>">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <button type="submit" class="btn waves-effect waves-light red" name="submit">Submit</button>
+        </form>
+      </div>
 
-        </div>
+    </div>
 </body>
 
 </html>
