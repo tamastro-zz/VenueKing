@@ -48,16 +48,16 @@ router.post('/profile', (req, res) => {
           if (data == []) {
             res.redirect('/user/profile')
           } else {
-              db.UserVenue.update({
-                  active: true
-                }, {
-                  where: {
-                    unique: data[0].unique
-                  }
-                })
-                .then(() => {
-                  res.redirect('/user/profile')
-                })
+            db.UserVenue.update({
+                active: true
+              }, {
+                where: {
+                  unique: data[0].unique
+                }
+              })
+              .then(() => {
+                res.redirect('/user/profile')
+              })
           }
         })
     })
@@ -128,6 +128,25 @@ router.post('/profile/editpassword', (req, res) => {
       } else {
         res.redirect(`/user/profile/editpassword?errs=Old Password Wrong`)
       }
+    })
+})
+
+router.get('/profile/delete', (req, res) => {
+  db.User.destroy({
+      where: {
+        id: req.session.user.id
+      }
+    })
+    .then(() => {
+      db.UserVenue.destroy({
+          where: {
+            UserId: req.session.user.id
+          }
+        })
+        .then(() => {
+          req.session.destroy()
+          res.redirect('/')
+        })
     })
 })
 

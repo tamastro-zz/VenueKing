@@ -29,7 +29,8 @@ router.get('/:idv', (req,res) => {
         date: req.session.user.tgl,
         VenueId: req.params.idv,
         active: true
-      }
+      },
+      include: [db.User]
     })
     .then(result => {
       res.render('venuedetail', {
@@ -55,21 +56,20 @@ router.post('/:idv', (req, res) => {
 })
 
 router.use((req, res, next) => {
-  if (req.session.user == 'owner') {
+  if (req.session.user.role == 'owner') {
     next();
   } else {
-    res.redirect('/');
+    res.redirect('/profile');
   }
 })
 
-router.get('/add', (req, res) => {
-  res.send('test')
-  // res.render('addvenue', {
-  //   title: "Add Venue"
-  // })
+router.get('/add/venue', (req, res) => {
+  res.render('addvenue', {
+    title: "Add Venue"
+  })
 })
 
-router.post('/add', (req, res) => {
+router.post('/add/venue', (req, res) => {
   db.Venue.create({
     name: `${req.body.name}`,
     quota: `${req.body.quota}`,

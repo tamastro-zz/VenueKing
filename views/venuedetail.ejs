@@ -50,6 +50,15 @@
           </tr>
         </table>
       </div>
+      <h3>Booking List</h3>
+      <table  class="centered highlight bordered responsive-table">
+        <% result.forEach(user => { %>
+          <tr>
+            <td><%=user.User.fullname%></td>
+            <td><%=user.date%></td>
+          </tr>
+        <%})%>
+      </table>
     </div>
 </body>
 

@@ -12,7 +12,7 @@
       <div class="col s6 #e91e63 red" align=center>
         <h1 class="z-depth-5">
           <%= data.username.toUpperCase() %>
-          <a href="/user/profile/edit" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">delete</i></a>
+          <a href="/user/profile/delete" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">delete</i></a>
         </h1>
       </div>
       <a href="/user/profile/edit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>      | <a href="/user/profile/editpassword">Edit Password</a>
@@ -22,7 +22,8 @@
           <%= data.email %><br>
       </p>
         <% if (role == 'owner') { %>
-        <a href="/venue/addvenue" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        <a href="/venue/add/venue" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        <%}%>
         <br><br>
         <table class="centered highlight bordered responsive-table">
           <tr>
@@ -33,6 +34,7 @@
           <% venue.forEach(ven => { tmp++%>
             <tr>
               <th><%=ven.Venue.name%></th>
+              <td><%= ven.date %></td>
               <td>
                 <%if(ven.active == true) {%>
                   BOOKED
@@ -48,7 +50,6 @@
             </tr>
           <% }) %>
         </table>
-        <%}%>
     </div>
 </body>
 
