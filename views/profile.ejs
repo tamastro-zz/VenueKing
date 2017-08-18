@@ -12,7 +12,9 @@
       <div class="col s6 #e91e63 red" align=center>
         <h1 class="z-depth-5">
           <%= data.username.toUpperCase() %>
-          <a href="/user/profile/delete" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">delete</i></a>
+            <% if (role == 'owner' || 'tenant' { %>
+              <a href="/user/profile/delete" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">delete</i></a>
+              <%}%>
         </h1>
       </div>
       <a href="/user/profile/edit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>      | <a href="/user/profile/editpassword">Edit Password</a>
@@ -21,35 +23,44 @@
           <b>Email User :</b>
           <%= data.email %><br>
       </p>
-        <% if (role == 'owner') { %>
+      <% if (role == 'owner') { %>
         <a href="/venue/add/venue" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
         <%}%>
-        <br><br>
-        <table class="centered highlight bordered responsive-table">
-          <tr>
-            <th>Venue Name</th>
-            <th>Status</th>
-          </tr>
-          <% let tmp =  0 %>
-          <% venue.forEach(ven => { tmp++%>
-            <tr>
-              <th><%=ven.Venue.name%></th>
-              <td><%= ven.date %></td>
-              <td>
-                <%if(ven.active == true) {%>
-                  BOOKED
-                <%} else {%>
-                  Waiting List
-                <%}%>
-              </td>
-              <td><form action="/user/profile" method="post">
-                <input type="hidden" name="venueid" value="<%= ven.VenueId %>">
-                <input type="hidden" name="unique" value="<%= ven.unique %>">
-                <button type="submit" class="btn waves-effect waves-light red" name="submit">Cancel</button>
-              </form></td>
-            </tr>
-          <% }) %>
-        </table>
+          <br><br>
+          <%= data.username.toUpperCase() %>
+            <% if (role == 'owner' || 'tenant' { %>
+              <table class="centered highlight bordered responsive-table">
+                <tr>
+                  <th>Venue Name</th>
+                  <th>Status</th>
+                </tr>
+                <% let tmp =  0 %>
+                  <% venue.forEach(ven => { tmp++ %>
+                    <tr>
+                      <th>
+                        <%=ven.Venue.name%>
+                      </th>
+                      <td>
+                        <%= ven.date %>
+                      </td>
+                      <td>
+                        <%if(ven.active == true) {%>
+                          BOOKED
+                          <%} else {%>
+                            Waiting List
+                            <%}%>
+                      </td>
+                      <td>
+                        <form action="/user/profile" method="post">
+                          <input type="hidden" name="venueid" value="<%= ven.VenueId %>">
+                          <input type="hidden" name="unique" value="<%= ven.unique %>">
+                          <button type="submit" class="btn waves-effect waves-light red" name="submit">Cancel</button>
+                        </form>
+                      </td>
+                    </tr>
+                    <% }) %>
+              </table>
+              <%}%>
     </div>
 </body>
 
