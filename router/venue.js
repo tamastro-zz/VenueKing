@@ -36,7 +36,8 @@ router.get('/:idv', (req,res) => {
       res.render('venuedetail', {
         data: venue,
         count: result.count,
-        result: result.rows
+        result: result.rows,
+        role: req.session.user.role
       })
     })
   })

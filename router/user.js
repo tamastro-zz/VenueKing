@@ -45,7 +45,7 @@ router.post('/profile', (req, res) => {
           }
         })
         .then(() => {
-          if (data == []) {
+          if (data[0] === undefined) {
             res.redirect('/user/profile')
           } else {
             db.UserVenue.update({
