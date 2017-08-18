@@ -12,7 +12,7 @@
       <div class="col s6 #e91e63 red" align=center>
         <h1 class="z-depth-5">
           <%= data.username.toUpperCase() %>
-            <% if (role == 'owner' || 'tenant' { %>
+            <% if (role == 'owner' || 'tenant') { %>
               <a href="/user/profile/delete" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">delete</i></a>
               <%}%>
         </h1>
@@ -28,7 +28,7 @@
         <%}%>
           <br><br>
           <%= data.username.toUpperCase() %>
-            <% if (role == 'owner' || 'tenant' { %>
+            <% if (role == 'owner' || 'tenant') { %>
               <table class="centered highlight bordered responsive-table">
                 <tr>
                   <th>Venue Name</th>
