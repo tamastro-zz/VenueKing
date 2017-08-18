@@ -27,8 +27,8 @@
         <a href="/venue/add/venue" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
         <%}%>
           <br><br>
+          <% if (role == 'owner' || 'tenant') { %>
           <%= data.username.toUpperCase() %>
-            <% if (role == 'owner' || 'tenant') { %>
               <table class="centered highlight bordered responsive-table">
                 <tr>
                   <th>Venue Name</th>
